@@ -27,6 +27,13 @@ def testar_extracao():
                 empresa = vaga.locator("h4").inner_text().strip()
                 link = vaga.locator("a").first.get_attribute("href").split("?")[0]
 
+                titulo_minusculo = titulo.lower()
+                
+                palavras_proibidas = ["pleno", "senior", "sênior", " pl ", "-pl", " sr ", "-sr"]
+                
+                if any(palavra in titulo_minusculo for palavra in palavras_proibidas):
+                    continue 
+
                 print(f'Cargo: {titulo}')
                 print(f'Empresa: {empresa}')
                 print(f'Link: {link}')
